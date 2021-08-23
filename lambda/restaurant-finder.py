@@ -27,7 +27,7 @@ logger.setLevel(logging.INFO)
 
 PERMISSIONS = ["alexa::devices:all:geolocation:read"]
 ACCURACY_THRESHOLD = 100
-API_KEY = "AIzaSyBEgqifQg9IlCyG1yK6W6GLJkCFT79w948"
+API_KEY = "<Google API>"
 Restaurant_names = []
 
 gmaps = googlemaps.Client(key = API_KEY)
