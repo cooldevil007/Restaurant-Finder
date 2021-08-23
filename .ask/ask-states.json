@@ -1,0 +1,30 @@
+{
+  "askcliStatesVersion": "2020-03-31",
+  "profiles": {
+    "default": {
+      "skillInfrastructure": {
+        "@ask-cli/lambda-deployer": {
+          "deployState": {
+            "default": {
+              "lambda": {
+                "arn": "arn:aws:lambda:us-east-1:666378417129:function:ask-restaurantfinder-default-default-1627914275887",
+                "lastModified": "2021-08-23T10:32:56.775+0000",
+                "revisionId": "15fe98b2-0e9f-428e-9523-af49b2e4aaa7"
+              },
+              "iamRole": "arn:aws:iam::666378417129:role/ask-lambda-RestaurantFinder-1627914273599"
+            }
+          }
+        }
+      },
+      "skillId": "amzn1.ask.skill.1cca3a33-2978-4037-9920-3ed8d319ad7c",
+      "skillMetadata": {
+        "lastDeployHash": "Sz3mjwsqDpCOav1F/zvuWR6sLrg="
+      },
+      "code": {
+        "default": {
+          "lastDeployHash": "Hg55YPplezPM0recwSVx6BGlSeY="
+        }
+      }
+    }
+  }
+}
