@@ -41,7 +41,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Welcome to Restaurant Finder. Here you can say 'restaurant finder' to find nearby restaurant."
+        speak_output = "Welcome to Restaurant Finder. Here you can say 'find restaurant' to find nearby restaurant."
 
         return (
             handler_input.response_builder
