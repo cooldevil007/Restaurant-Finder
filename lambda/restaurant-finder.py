@@ -32,7 +32,7 @@ ACCURACY_THRESHOLD = 100
 API_KEY = ""
 Restaurant_names = []
 
-# Googlemaps python library to access "Google Maps" services by passing API Key.
+""" Googlemaps python library to access "Google Maps" services by passing API Key. """
 gmaps = googlemaps.Client(key = API_KEY)
 
 class LaunchRequestHandler(AbstractRequestHandler):
@@ -60,21 +60,21 @@ class FindRestaurantIntentHandler(AbstractRequestHandler):
         return ask_utils.is_intent_name("FindRestaurantIntent")(handler_input)
 
     def handle(self, handler_input):
-        # Check whether request support geolocation interface. Geolocation object will be added in request if user uses Alexa app in mobile device.
+        """Check whether request support geolocation interface. Geolocation object will be added in request if user uses Alexa app in mobile device."""
         is_geo_supported = handler_input.request_envelope.context.system.device.supported_interfaces.geolocation
 
         if is_geo_supported:
-            # Get geolocation object which contains user co-ordinate once permission granted.
+            """Get geolocation object which contains user co-ordinate once permission granted."""
             geo_object = handler_input.request_envelope.context.geolocation
             pprint.pprint(geo_object)
 
             if not (geo_object or geo_object.coordinate):
                 skill_permission_granted = handler_input.request_envelope.context.system.user.permissions.scopes.status == 'GRANTED'
-                # If permission not granted send Alexa permission card for user in Alexa app to grant permission.
+                """If permission not granted send Alexa permission card for user in Alexa app to grant permission."""
                 if not (skill_permission_granted):
                     return handler_input.response_builder.speak("Restaurant Finder would like to use your location. To turn on location sharing, please go to your Alexa app, and follow the instructions.").set_card(AskForPermissionsConsentCard(permissions=PERMISSIONS)).response
                 else:
-                    # Location service should be "Running" and "Enabled".
+                    """Location service should be "Running" and "Enabled"."""
                     if not (geo_object.location_services.status == 'RUNNING'):
                         return handler_input.response_builder.speak("Restaurant Finder is having trouble accessing your location. Please wait a moment, and try again later.").response
                     if not (geo_object.location_services.access == 'ENABLED'):
@@ -82,20 +82,20 @@ class FindRestaurantIntentHandler(AbstractRequestHandler):
                     else:
                         return handler_input.response_builder.speak("There was an error accessing your location. Please try again later.").response
 
-            # Check user Geo-co-ordinate and accuracy less than 100 meters.
+            """Check user Geo-co-ordinate and accuracy less than 100 meters."""
             if (geo_object and geo_object.coordinate and geo_object.coordinate.accuracy_in_meters < ACCURACY_THRESHOLD):
-                # Retrieve Latitude & Longitude co-ordinate.
+                """Retrieve Latitude & Longitude co-ordinate."""
                 latitude = geo_object.coordinate.latitude_in_degrees
                 longitude = geo_object.coordinate.longitude_in_degrees
                 location_data = str(latitude) + "," + str(longitude)
-                # Call Google Map "Place NearBy" service with location , radius within 4 KM, currently open and of type restaurant.
+                """Call Google Map "Place NearBy" service with location , radius within 4 KM, currently open and of type restaurant."""
                 place_result = gmaps.places_nearby(location = location_data , radius = 4000, open_now = True, type = 'restaurant')
 
                 for place in place_result['results']:
                     my_place_id = place['place_id']
 
                     name_restaurant = ['name']
-                    # Take out Restaurant Name by passing unique Place ID from API response.
+                    """Take out Restaurant Name by passing unique Place ID from API response."""
                     restaurant_details = gmaps.place(place_id = my_place_id , fields = name_restaurant)
                     Restaurant_names.append(restaurant_details['result'])
 
