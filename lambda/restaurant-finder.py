@@ -27,7 +27,7 @@ logger.setLevel(logging.INFO)
 
 PERMISSIONS = ["alexa::devices:all:geolocation:read"]
 ACCURACY_THRESHOLD = 100
-API_KEY = "<Google API>"
+API_KEY = "AIzaSyCeRK1LVbm3n2ioch1QHB0xJlBwASwl5Zw"
 Restaurant_names = []
 
 gmaps = googlemaps.Client(key = API_KEY)
@@ -78,24 +78,24 @@ class FindRestaurantIntentHandler(AbstractRequestHandler):
                         return handler_input.response_builder.speak("There was an error accessing your location. Please try again later.").response
 
 
-        if (geo_object and geo_object.coordinate and geo_object.coordinate.accuracy_in_meters < ACCURACY_THRESHOLD):
-            latitude = geo_object.coordinate.latitude_in_degrees
-            longitude = geo_object.coordinate.longitude_in_degrees
-            location_data = str(latitude) + "," + str(longitude)
-            place_result = gmaps.places_nearby(location = location_data , radius = 4000, open_now = True, type = 'restaurant')
+            if (geo_object and geo_object.coordinate and geo_object.coordinate.accuracy_in_meters < ACCURACY_THRESHOLD):
+                latitude = geo_object.coordinate.latitude_in_degrees
+                longitude = geo_object.coordinate.longitude_in_degrees
+                location_data = str(latitude) + "," + str(longitude)
+                place_result = gmaps.places_nearby(location = location_data , radius = 4000, open_now = True, type = 'restaurant')
 
-            for place in place_result['results']:
-                my_place_id = place['place_id']
+                for place in place_result['results']:
+                    my_place_id = place['place_id']
 
-                name_restaurant = ['name']
+                    name_restaurant = ['name']
 
-                restaurant_details = gmaps.place(place_id = my_place_id , fields = name_restaurant)
-                Restaurant_names.append(restaurant_details['result'])
+                    restaurant_details = gmaps.place(place_id = my_place_id , fields = name_restaurant)
+                    Restaurant_names.append(restaurant_details['result'])
 
 
         return (
             handler_input.response_builder
-                .speak("Top three restaurant near your locations are {}, {} and {} ".format(Restaurant_names[0], Restaurant_names[1], Restaurant_names[2]))
+                .speak("Top three restaurant near your locations are {}, {} and {} ".format(Restaurant_names[0].name, Restaurant_names[1].name, Restaurant_names[2].name))
                 .response
         )
 
