@@ -32,7 +32,7 @@ ACCURACY_THRESHOLD = 100
 API_KEY = ""
 Restaurant_names = []
 
-# Googlemaps python library to access "Google Maps" services.
+# Googlemaps python library to access "Google Maps" services by passing API Key.
 gmaps = googlemaps.Client(key = API_KEY)
 
 class LaunchRequestHandler(AbstractRequestHandler):
