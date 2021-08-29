@@ -54,13 +54,13 @@ class LaunchRequestHandler(AbstractRequestHandler):
         )
 
 class FindRestaurantIntentHandler(AbstractRequestHandler):
-    """Handler for Place API Intent"""
+    """Handler to find Restaurant Intent"""
 
     def can_handle(self, handler_input):
         return ask_utils.is_intent_name("FindRestaurantIntent")(handler_input)
 
     def handle(self, handler_input):
-        """Check whether request support geolocation interface. Geolocation object will be added in request if user uses Alexa app in mobile device."""
+        """Check whether request support geolocation interface. Geolocation object will be added in request if user invoke skill using Alexa app in mobile device."""
         is_geo_supported = handler_input.request_envelope.context.system.device.supported_interfaces.geolocation
 
         if is_geo_supported:
