@@ -14,7 +14,7 @@
       "skillInfrastructure": {
         "userConfig": {
           "runtime": "python3.6",
-          "handler": "restaurant_finder.handler",
+          "handler": "lambda_function.handler",
           "awsRegion": "us-east-1"
         },
         "type": "@ask-cli/lambda-deployer"
