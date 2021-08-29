@@ -29,6 +29,7 @@ logger.setLevel(logging.INFO)
 PERMISSIONS = ["alexa::devices:all:geolocation:read"]
 
 ACCURACY_THRESHOLD = 100
+# Google Map API key.
 API_KEY = ""
 Restaurant_names = []
 
