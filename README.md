@@ -19,6 +19,9 @@ There are a number of different ways for you to setup your skill, depending on y
 ---
 
 ## Setup to run this demo
+
+**Important:** Use Alexa app in mobile device to launch this skill which will provide user's latitude & longitude details with skill to work.
+
 ### How to create Google API key to access Google Place API
 
 * Create Google Developer account and setup account by providing billing details. Remember to select "Google Map Service" and not "Google Cloud service" as billing service.
@@ -44,6 +47,3 @@ OR
 - [Generating/restricting an API key](https://developers.google.com/maps/gmp-get-started#api-key)
 - [Places API](https://developers.google.com/places/)
 - [Alexa Geo-Location SDK Library](https://alexa-skills-kit-python-sdk.readthedocs.io/en/latest/models/ask_sdk_model.interfaces.geolocation.html)
-
-
-
