@@ -25,14 +25,14 @@ from ask_sdk_model import Response
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-# Geo-Location Permission
+"""Geo-Location Permission"""
 PERMISSIONS = ["alexa::devices:all:geolocation:read"]
 
 ACCURACY_THRESHOLD = 100
 API_KEY = ""
 Restaurant_names = []
 
-""" Googlemaps python library to access "Google Maps" services by passing API Key. """
+"""Googlemaps python library to access "Google Maps" services by passing API Key."""
 gmaps = googlemaps.Client(key = API_KEY)
 
 class LaunchRequestHandler(AbstractRequestHandler):
