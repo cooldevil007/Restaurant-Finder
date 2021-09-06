@@ -17,24 +17,22 @@ from ask_sdk_core.handler_input import HandlerInput
 from ask_sdk_model.ui import AskForPermissionsConsentCard
 from ask_sdk_core.api_client import DefaultApiClient
 
-import googlemaps
+import requests
 import pprint
+import re
 
 from ask_sdk_model import Response
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-# Geo-Location Permission
 PERMISSIONS = ["alexa::devices:all:geolocation:read"]
-
 ACCURACY_THRESHOLD = 100
-# Google Map API key.
-API_KEY = ""
+API_KEY = "AIzaSyCeRK1LVbm3n2ioch1QHB0xJlBwASwl5Zw"
 Restaurant_names = []
+# Base URL of endpoint
 
-# Googlemaps python library to access "Google Maps" services by passing API Key.
-gmaps = googlemaps.Client(key = API_KEY)
+url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
 
 class LaunchRequestHandler(AbstractRequestHandler):
     """Handler for Skill Launch."""
@@ -55,7 +53,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
         )
 
 class FindRestaurantIntentHandler(AbstractRequestHandler):
-    """Handler to find Restaurant Intent"""
+    """Handler for Place API Intent"""
 
     def can_handle(self, handler_input):
         return ask_utils.is_intent_name("FindRestaurantIntent")(handler_input)
@@ -89,22 +87,42 @@ class FindRestaurantIntentHandler(AbstractRequestHandler):
                 latitude = geo_object.coordinate.latitude_in_degrees
                 longitude = geo_object.coordinate.longitude_in_degrees
                 location_data = str(latitude) + "," + str(longitude)
-                # Call Google Map "Place NearBy" service with location , radius within 4 KM, currently open and of type restaurant.
-                place_result = gmaps.places_nearby(location = location_data , radius = 4000, open_now = True, type = 'restaurant')
+                
+                 # Call Google Map "Place NearBy" service with location , radius within 4 KM, currently open and of type restaurant.
+                response_data = requests.get(url + "location="+ location_data + "&radius=4000&type=restaurant" + "&key=" + API_KEY)
+                result_data = response_data.json()["results"]
+                if len(result_data)>=3:
+                    restaurant_name1 = result_data[0]["name"]
+                    restaurant_name2 = result_data[1]["name"]
+                    restaurant_name3 = result_data[2]["name"]
 
-                for place in place_result['results']:
-                    my_place_id = place['place_id']
+                    speak_output = "Top three restaurant near your location are {}, {} and {}".format(restaurant_name1 , restaurant_name2, restaurant_name3)  
 
-                    name_restaurant = ['name']
-                    # Take out Restaurant Name by passing unique Place ID from API response.
-                    restaurant_details = gmaps.place(place_id = my_place_id , fields = name_restaurant)
-                    Restaurant_names.append(restaurant_details['result'])
+                    return (
+                        handler_input.response_builder.speak(speak_output.replace("&", "")).response
+                    )
 
+                elif len(result_data)<=2: 
+                    restaurant_name1 = result_data[0]["name"]
+                    restaurant_name2 = result_data[1]["name"]
+
+                    speak_output = "Top two restaurant near your location are {} and {}".format(restaurant_name1 , restaurant_name2)
+
+                    return (
+                        handler_input.response_builder.speak(speak_output.replace("&", "")).response
+                    )
+
+                else:
+                    restaurant_name1 = result_data[0]["name"]
+
+                    speak_output = "Top restaurant near your location are {}".format(restaurant_name1)
+
+                    return (
+                        handler_input.response_builder.speak(speak_output.replace("&", "")).response
+                    ) 
 
         return (
-            handler_input.response_builder
-                .speak("Top three restaurant near your locations are {}, {} and {} ".format(Restaurant_names[0].name, Restaurant_names[1].name, Restaurant_names[2].name))
-                .response
+            handler_input.response_builder.speak("Please try again as we didn't found any restaurant near to your location").response
         )
 
 
@@ -119,10 +137,7 @@ class HelpIntentHandler(AbstractRequestHandler):
         speak_output = "You can say 'find restaurant' to find top three restaurant near me! How can I help?"
 
         return (
-            handler_input.response_builder
-                .speak(speak_output)
-                .ask(speak_output)
-                .response
+            handler_input.response_builder.speak(speak_output).ask(speak_output).response
         )
 
 
@@ -138,9 +153,7 @@ class CancelOrStopIntentHandler(AbstractRequestHandler):
         speak_output = "Goodbye!"
 
         return (
-            handler_input.response_builder
-                .speak(speak_output)
-                .response
+            handler_input.response_builder.speak(speak_output).response
         )
 
 
@@ -173,10 +186,7 @@ class IntentReflectorHandler(AbstractRequestHandler):
         speak_output = "You just triggered " + intent_name + "."
 
         return (
-            handler_input.response_builder
-                .speak(speak_output)
-                # .ask("add a reprompt if you want to keep the session open for the user to respond")
-                .response
+            handler_input.response_builder.speak(speak_output).response
         )
 
 
@@ -196,10 +206,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
         speak_output = "Sorry, I had trouble doing what you asked. Please try again."
 
         return (
-            handler_input.response_builder
-                .speak(speak_output)
-                .ask(speak_output)
-                .response
+            handler_input.response_builder.speak(speak_output).ask(speak_output).response
         )
 
 class LoggingRequestInterceptor(AbstractRequestInterceptor):
@@ -232,7 +239,7 @@ sb.add_request_handler(IntentReflectorHandler()) # make sure IntentReflectorHand
 
 sb.add_exception_handler(CatchAllExceptionHandler())
 
-# Adding Request and response interceptor to log Request and Response JSON.
+# Adding Request and response interceptor
 sb.add_global_request_interceptor(LoggingRequestInterceptor())
 sb.add_global_response_interceptor(LoggingResponseInterceptor())
 
