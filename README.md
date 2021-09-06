@@ -31,7 +31,7 @@ There are a number of different ways for you to setup your skill, depending on y
   ```
     API_KEY = ""
   ```
- **Note:** Skill will send Account linking card to your Alexa app if you have not granted location permission.
+ **Note:** Skill will send Account linking card to your Alexa app if location permission not granted.
 
 
 ### API documentation & Resources
