@@ -39,4 +39,4 @@ There are a number of different ways for you to setup your skill, depending on y
 - [Get Started with Google Maps Platform](https://developers.google.com/maps/gmp-get-started)
 - [Generating/restricting an API key](https://developers.google.com/maps/gmp-get-started#api-key)
 - [Places API](https://developers.google.com/places/)
-- [Alexa Geo-Location SDK Library](https://alexa-skills-kit-python-sdk.readthedocs.io/en/latest/models/ask_sdk_model.interfaces.geolocation.html)
+- [Alexa Geolocation SDK Library](https://alexa-skills-kit-python-sdk.readthedocs.io/en/latest/models/ask_sdk_model.interfaces.geolocation.html)
