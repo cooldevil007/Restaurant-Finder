@@ -28,7 +28,8 @@ logger.setLevel(logging.INFO)
 
 PERMISSIONS = ["alexa::devices:all:geolocation:read"]
 ACCURACY_THRESHOLD = 100
-API_KEY = "AIzaSyCeRK1LVbm3n2ioch1QHB0xJlBwASwl5Zw"
+# Add Google API Key here to access Google API.
+API_KEY = ""
 Restaurant_names = []
 # Base URL of endpoint
 
