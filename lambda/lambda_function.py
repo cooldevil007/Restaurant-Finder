@@ -6,7 +6,6 @@
 # This sample is built using the handler classes approach in skill builder.
 
 import logging
-from os import name
 from ask_sdk_core.dispatch_components.request_components import AbstractRequestInterceptor, AbstractResponseInterceptor
 
 from ask_sdk_core.skill_builder import CustomSkillBuilder, SkillBuilder
@@ -19,7 +18,6 @@ from ask_sdk_core.api_client import DefaultApiClient
 
 import requests
 import pprint
-import re
 
 from ask_sdk_model import Response
 
