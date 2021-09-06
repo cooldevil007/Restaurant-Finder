@@ -1,4 +1,4 @@
-#  Build An Alexa Restaurant Finder Skill 🇺🇸
+#  Build An Alexa Restaurant Finder Skill in Python 🇺🇸
 <img src="https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/quiz-game/header._TTH_.png" />
 
 This sample skill showcase how to find nearby restaurant using Alexa [Geolocation](https://developer.amazon.com/en-US/docs/alexa/custom-skills/location-services-for-alexa-skills.html) with [Google Place API](https://developers.google.com/maps/documentation/places/web-service/overview).
@@ -31,6 +31,7 @@ There are a number of different ways for you to setup your skill, depending on y
   ```
     API_KEY = ""
   ```
+ **Note:** Skill will send Account linking card to your Alexa app if you have not granted location permission.
 
 
 ### API documentation & Resources
