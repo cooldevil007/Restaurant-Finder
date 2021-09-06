@@ -98,6 +98,7 @@ class FindRestaurantIntentHandler(AbstractRequestHandler):
                     speak_output = "Top three restaurant near your location are {}, {} and {}".format(restaurant_name1 , restaurant_name2, restaurant_name3)  
 
                     return (
+                        # Remove any special character if present
                         handler_input.response_builder.speak(speak_output.replace("&", "")).response
                     )
 
@@ -108,6 +109,7 @@ class FindRestaurantIntentHandler(AbstractRequestHandler):
                     speak_output = "Top two restaurant near your location are {} and {}".format(restaurant_name1 , restaurant_name2)
 
                     return (
+                        # Remove any special character if present
                         handler_input.response_builder.speak(speak_output.replace("&", "")).response
                     )
 
@@ -117,6 +119,7 @@ class FindRestaurantIntentHandler(AbstractRequestHandler):
                     speak_output = "Top restaurant near your location are {}".format(restaurant_name1)
 
                     return (
+                        # Remove any special character if present
                         handler_input.response_builder.speak(speak_output.replace("&", "")).response
                     ) 
 
