@@ -1,7 +1,7 @@
 #  Build An Alexa Restaurant Finder Skill 🇺🇸
 <img src="https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/quiz-game/header._TTH_.png" />
 
-This sample skill showcase how to find nearby restaurant using Alexa [Geo-Location](https://developer.amazon.com/en-US/docs/alexa/custom-skills/location-services-for-alexa-skills.html) with [Google Place API](https://developers.google.com/maps/documentation/places/web-service/overview).
+This sample skill showcase how to find nearby restaurant using Alexa [Geolocation](https://developer.amazon.com/en-US/docs/alexa/custom-skills/location-services-for-alexa-skills.html) with [Google Place API](https://developers.google.com/maps/documentation/places/web-service/overview).
 
 ## Skill Architecture
 Each skill consists of two basic parts, a front end and a back end.
@@ -26,7 +26,7 @@ There are a number of different ways for you to setup your skill, depending on y
 ### How to create Google API key to access Google Place API
 
 * Create Google Developer account and setup account by providing billing details. Remember to select "Google Map Service" and not "Google Cloud service" as billing service.
-* Create Google project and Enabled "Google Place" API.
+* Create Google project and enable "Google Place" API.
 * Generate API Key add it in backend code as below.
   ```
     API_KEY = ""
