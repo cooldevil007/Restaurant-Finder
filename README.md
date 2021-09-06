@@ -15,6 +15,7 @@ There are a number of different ways for you to setup your skill, depending on y
  * If this is your first skill, choose the [Alexa-Hosted](https://developer.amazon.com/en-US/docs/alexa/hosted-skills/build-a-skill-end-to-end-using-an-alexa-hosted-skill.html) to get started quickly.
  * If you want to manage the backend resources in your own AWS account, you can follow the [AWS-Hosted instructions](https://developer.amazon.com/en-US/docs/alexa/custom-skills/host-a-custom-skill-as-an-aws-lambda-function.html).
  * Developers with the ASK Command Line Interface configured may follow the [ASK CLI](https://developer.amazon.com/en-US/docs/alexa/smapi/quick-start-alexa-skills-kit-command-line-interface.html).
+ * If you want to host the backend code in Alexa developer account (Alexa Hosted skill) then you can directly create hosted skill by [importing Github repository](https://developer.amazon.com/en-US/docs/alexa/hosted-skills/alexa-hosted-skills-git-import.html).
 
 ---
 
@@ -26,21 +27,12 @@ There are a number of different ways for you to setup your skill, depending on y
 
 * Create Google Developer account and setup account by providing billing details. Remember to select "Google Map Service" and not "Google Cloud service" as billing service.
 * Create Google project and Enabled "Google Place" API.
-* Generate API Key which will be needed in skill backend code.
+* Generate API Key add it in backend code as below.
+  ```
+    API_KEY = ""
+  ```
 
-### Install "Google Maps" python library
 
-* Add "googlemaps" library in requirements.txt file to be downloaded after deployment like below:
-```
-  googlemaps>=4.5.3
-```
-
-OR
-
-* Run PIP to install "googlemaps" library.
-```
-    $ pip install -U googlemaps
-```
 ### API documentation & Resources
 
 - [Get Started with Google Maps Platform](https://developers.google.com/maps/gmp-get-started)
