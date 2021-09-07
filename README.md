@@ -27,7 +27,7 @@ There are a number of different ways for you to setup your skill, depending on y
 
 * Create Google Developer account and setup account by providing billing details. Remember to select "Google Map Service" and not "Google Cloud service" as billing service.
 * Create Google project and enable "Google Place" API.
-* Generate API Key add it in backend code as below.
+* Generate API Key and add it in backend code at line 30 as below.
   ```
     API_KEY = ""
   ```
