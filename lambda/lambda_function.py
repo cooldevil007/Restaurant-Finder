@@ -245,4 +245,4 @@ sb.add_exception_handler(CatchAllExceptionHandler())
 sb.add_global_request_interceptor(LoggingRequestInterceptor())
 sb.add_global_response_interceptor(LoggingResponseInterceptor())
 
-handler = sb.lambda_handler()
+lambda_handler = sb.lambda_handler()
