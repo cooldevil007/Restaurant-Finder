@@ -102,7 +102,7 @@ class FindRestaurantIntentHandler(AbstractRequestHandler):
                         handler_input.response_builder.speak(speak_output.replace("&", "")).response
                     )
 
-                elif len(result_data)<=2: 
+                elif len(result_data)==2: 
                     restaurant_name1 = result_data[0]["name"]
                     restaurant_name2 = result_data[1]["name"]
 
@@ -113,7 +113,7 @@ class FindRestaurantIntentHandler(AbstractRequestHandler):
                         handler_input.response_builder.speak(speak_output.replace("&", "")).response
                     )
 
-                else:
+                elif len(result_data)==1:
                     restaurant_name1 = result_data[0]["name"]
 
                     speak_output = "Top restaurant near your location are {}".format(restaurant_name1)
@@ -121,10 +121,15 @@ class FindRestaurantIntentHandler(AbstractRequestHandler):
                     return (
                         # Remove any special character if present
                         handler_input.response_builder.speak(speak_output.replace("&", "")).response
-                    ) 
+                    )
+                else:
+                    
+                    return(
+                        handler_input.response_builder.speak("We didn't find any restaurant near to your location. Please try again later.").response
+                    )
 
         return (
-            handler_input.response_builder.speak("Please try again as we didn't found any restaurant near to your location").response
+            handler_input.response_builder.speak("Please use Alexa app to use this skill.").response
         )
 
 
